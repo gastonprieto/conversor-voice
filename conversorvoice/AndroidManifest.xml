@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.jurihock.conversorvoice"
+    android:versionCode="9"
+    android:versionName="2.3" >
+
+    <uses-sdk
+        android:maxSdkVersion="17"
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
+    <!--
+    TEST
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    -->
+
+    <application
+        android:name="utn.frba.ps.conversorvoice.Application"
+        android:allowBackup="false"
+        android:icon="@drawable/launcher"
+        android:label="@string/ApplicationName"
+        android:theme="@style/Theme.GreenDroid.NoTitleBar" >
+        <service
+            android:name="utn.frba.ps.conversorvoice.services.DafxService"
+            android:label="@string/DafxService" >
+        </service>
+        <service
+            android:name="utn.frba.ps.conversorvoice.services.AafService"
+            android:label="@string/AafService" >
+        </service>
+
+        <activity
+            android:name="utn.frba.ps.conversorvoice.activities.HomeActivity"
+            android:label="@string/HomeActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="utn.frba.ps.conversorvoice.activities.DafxActivity"
+            android:label="@string/DafxActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity
+            android:name="utn.frba.ps.conversorvoice.activities.AafActivity"
+            android:label="@string/AafActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity
+            android:name="utn.frba.ps.conversorvoice.activities.PreferenceActivity"
+            android:label="@string/PreferenceActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+    </application>
+
+</manifest>

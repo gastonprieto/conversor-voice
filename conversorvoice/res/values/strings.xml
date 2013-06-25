@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Application -->
+    <string name="ApplicationName">ConversorVoice</string>
+    <string name="ApplicationDescription"></string>
+
+    <!-- Activities -->
+    <string name="HomeActivity">ConversorVoice</string>
+    <string name="DafxActivity">Real-time voice changer</string>
+    <string name="AafActivity">Altered Auditory Feedback</string>
+    <string name="PreferenceActivity">Preferences</string>
+
+    <!-- Widgets -->
+    <string name="IntervalPickerLabel">Transpose by %s semitone(s)</string>
+
+    <!-- Preferences -->
+    <string name="VolumeLevelPreference">Volume level</string>
+    <string name="SoundAmplificationPreference">Sound amplification</string>
+    <string name="ReduceNoisePreference">Reduce noise</string>
+    <string name="SampleRatePreference">Sample rate</string>
+    <string name="LoggingPreference">Logging</string>
+    <string name="LoggingSummary">Dump LogCat output</string>
+    <string name="ResetPreferences">Reset to default values</string>
+    <string name="VolumePreferences">Volume</string>
+    <string name="SoundPreferences">Sound quality</string>
+    <string name="MiscPreferences">Miscellaneous</string>
+
+    <!-- Services -->
+    <string name="DafxService">ConversorVoice DAFX Service</string>
+    <string name="AafService">ConversorVoice AAF Service</string>
+    <string name="ServiceFailureMessage">Oops! Something went wrong. :-( Check if a wired or Bluetooth earphone/headset is plugged in. Maybe try it with a different sample rate again.</string>
+    <string name="ServiceNotificationTitle">ConversorVoice runs in the background!</string>
+    <string name="ServiceNotificationSubtitle">Touch here to see details.</string>
+
+</resources>
