@@ -24,13 +24,21 @@
             android:visibility="visible" />
     </LinearLayout>
 
-    <utn.frba.ps.conversorvoice.widgets.ColoredToggleButton
-        android:id="@+id/viewStartStopButton"
+    <Button
+        android:id="@+id/viewStartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/LayoutMargin"
-        android:background="@drawable/button_microphone"
-        android:textOff=""
-        android:textOn="" />
+        android:text="@string/start_message"
+        android:enabled="true"/>
+    
+    <Button
+        android:id="@+id/viewStopButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/LayoutMargin"
+        android:enabled="false"
+        android:text="@string/stop_message"
+        />
 
 </LinearLayout>

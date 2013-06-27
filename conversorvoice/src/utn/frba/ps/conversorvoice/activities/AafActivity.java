@@ -27,25 +27,25 @@ import utn.frba.ps.conversorvoice.audio.HeadsetMode;
 import utn.frba.ps.conversorvoice.services.AafService;
 import utn.frba.ps.conversorvoice.services.ServiceListener;
 import utn.frba.ps.conversorvoice.widgets.AafPicker;
-import utn.frba.ps.conversorvoice.widgets.ColoredToggleButton;
 import utn.frba.ps.conversorvoice.widgets.IntervalPicker;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import de.jurihock.conversorvoice.R;
 
 public final class AafActivity extends AudioServiceActivity<AafService>
 	implements
-	PropertyChangeListener, OnClickListener,
+	PropertyChangeListener, 
 	OnCheckedChangeListener, ServiceListener
 {
 	// Relevant activity widgets:
 	private AafPicker			viewAafPicker			= null;
 	private IntervalPicker		viewIntervalPicker		= null;
-	private ColoredToggleButton	viewStartStopButton		= null;
+	private Button	viewStartButton		= null;
+	private Button	viewStopButton		= null;
 
 	public AafActivity()
 	{
@@ -68,12 +68,34 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 			R.id.viewIntervalPicker);
 		viewIntervalPicker.setPropertyChangeListener(this);
 
-		viewStartStopButton = (ColoredToggleButton) this.findViewById(
-			R.id.viewStartStopButton);
+		viewStartButton = (Button) this.findViewById(R.id.viewStartButton);
+		viewStopButton = (Button) this.findViewById(R.id.viewStopButton);
+		
 		// set red if checked otherwise white
-		viewStartStopButton.setOnClickListener(this);
+		viewStartButton.setOnClickListener(new ListenerStart());
+		viewStopButton.setOnClickListener(new ListenerStop());
+	}
+	
+	private class ListenerStart implements OnClickListener {
+		public void onClick(View v) {
+			getService().startThread();
+			updateButtons(true);
+		}
+	}
+	
+	private class ListenerStop implements OnClickListener {
+		public void onClick(View v) {
+			getService().stopThread(false);
+			updateButtons(false);
+		}
+
 	}
 
+	private void updateButtons(boolean activateStart) {
+		viewStartButton.setEnabled(activateStart);
+		viewStopButton.setEnabled(!activateStart);
+	}
+	
 	@Override
 	protected void onServiceConnected()
 	{
@@ -84,7 +106,7 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 
 		// Update widgets
 		viewAafPicker.setAaf(getService().getAaf());
-		viewStartStopButton.setChecked(getService().isThreadRunning());
+		updateButtons(getService().isThreadRunning());
 
 		if (getService().getAaf() == AAF.FAF)
 		{
@@ -114,27 +136,6 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 		}
 
 		getService().setListener(null);
-	}
-
-	public void onClick(View view)
-	{
-		if (getService().isThreadRunning())
-		{
-			if (viewStartStopButton.isChecked())
-				viewStartStopButton.setChecked(false);
-			
-			getService().stopThread(false);
-		}
-		else
-		{
-			if (!viewStartStopButton.isChecked())
-				viewStartStopButton.setChecked(true);
-			
-			getService().startThread();
-		}
-
-		// BZZZTT!!1!
-		viewStartStopButton.performHapticFeedback(0);
 	}
 
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
@@ -182,12 +183,9 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 	
 	public void onServiceFailed()
 	{
-		if (viewStartStopButton.isChecked())
-			viewStartStopButton.setChecked(false);
+		viewStartButton.setEnabled(false);
+		viewStopButton.setEnabled(false);
 
 		new Utils(this).toast(getString(R.string.ServiceFailureMessage));
-
-		// BZZZTT!!1!
-		viewStartStopButton.performHapticFeedback(0);
 	}
 }
