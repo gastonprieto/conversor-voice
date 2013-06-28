@@ -19,7 +19,6 @@
 package utn.frba.ps.conversorvoice.threads;
 
 import utn.frba.ps.conversorvoice.AAF;
-import utn.frba.ps.conversorvoice.DAFX;
 import utn.frba.ps.conversorvoice.Disposable;
 import utn.frba.ps.conversorvoice.Utils;
 import utn.frba.ps.conversorvoice.io.AudioDevice;
@@ -102,23 +101,6 @@ public abstract class AudioThread implements Runnable, Disposable
 	}
 
 	protected abstract void doProcessing();
-
-	public static AudioThread create(Context context, AudioDevice input, AudioDevice output, DAFX dafx)
-	{
-		switch (dafx)
-		{
-		case Robotize:
-			return new RobotizeThread(context, input, output);
-		case Transpose:
-			return new TransposeThread(context, input, output);
-		case Detune:
-			return new DetuneThread(context, input, output);
-		case Hoarseness:
-			return new HoarsenessThread(context, input, output);
-		default:
-			throw new IllegalArgumentException("Illegal DAFX argument!");
-		}
-	}
 
 	public static AudioThread create(Context context, AudioDevice input, AudioDevice output, AAF aaf)
 	{

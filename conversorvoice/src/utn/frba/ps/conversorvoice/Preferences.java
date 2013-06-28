@@ -27,7 +27,6 @@ import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.preference.PreferenceManager;
 import de.jurihock.conversorvoice.R;
-import de.jurihock.conversorvoice.R.xml;
 
 public final class Preferences
 {
@@ -43,10 +42,8 @@ public final class Preferences
 	// public static final int PCM_OUT_SOURCE = AudioManager.STREAM_VOICE_CALL;
 
 	public static final String		DATASTORE_DIR	= "Android/data/utn.frba.ps.conversorvoice";
-	public static final String		VOICEBANK_DIR	= DATASTORE_DIR
-														+ "/voicebank";
-	public static final String		RECORDS_FILE	= VOICEBANK_DIR
-														+ "/records.xml";
+	public static final String		VOICEBANK_DIR	= DATASTORE_DIR + "/voicebank";
+	public static final String		RECORDS_FILE	= VOICEBANK_DIR + "/records.xml";
 
 	private final SharedPreferences	preferences;
 
@@ -125,19 +122,6 @@ public final class Preferences
 	{
 		return preferences.edit()
 			.putInt("HeadsetMode", value.ordinal())
-			.commit();
-	}
-	
-	public DAFX getDafx()
-	{
-		return DAFX.valueOf(
-			preferences.getInt("DAFX", 0));
-	}
-
-	public boolean setDafx(DAFX value)
-	{
-		return preferences.edit()
-			.putInt("DAFX", value.ordinal())
 			.commit();
 	}
 	

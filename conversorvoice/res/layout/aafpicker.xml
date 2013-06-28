@@ -9,8 +9,6 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_on_off"
-            android:button="@null"
             android:gravity="center"
             android:tag="FAF"
             android:text="FAF"
@@ -19,8 +17,6 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_on_off"
-            android:button="@null"
             android:gravity="center"
             android:tag="DAF"
             android:text="DAF"
@@ -29,8 +25,6 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_on_off"
-            android:button="@null"
             android:gravity="center"
             android:tag="FastDAF"
             android:text="Fast DAF"

@@ -18,11 +18,10 @@
 
 package utn.frba.ps.conversorvoice.activities;
 
-import greendroid.app.GDActivity;
-import greendroid.widget.ActionBarItem;
 import utn.frba.ps.conversorvoice.Utils;
 import utn.frba.ps.conversorvoice.services.AudioService;
 import utn.frba.ps.conversorvoice.services.ServiceBinder;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +33,7 @@ import android.os.IBinder;
  * Base class for a front-end activity which interacts with its service.
  */
 public abstract class AudioServiceActivity<T extends AudioService> extends
-	GDActivity
+	Activity
 {
 	// Service parameters:
 	private final Class<T>		serviceClass;
@@ -52,8 +51,6 @@ public abstract class AudioServiceActivity<T extends AudioService> extends
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
-		addActionBarItem(ActionBarItem.Type.Settings);
 	}
 
 	protected T getService()
@@ -86,14 +83,6 @@ public abstract class AudioServiceActivity<T extends AudioService> extends
 				new Utils(this).toast("Unable to start service %s!",
 					serviceClass.getName());
 			}
-		}
-	}
-
-	private void stopService()
-	{
-		if (serviceIntent != null)
-		{
-			stopService(serviceIntent);
 		}
 	}
 
@@ -176,17 +165,4 @@ public abstract class AudioServiceActivity<T extends AudioService> extends
 		unbindService();
 	}
 
-	@Override
-	public boolean onHandleActionBarItemClick(ActionBarItem item, int position)
-	{
-		// Show preference activity
-		if (position == 0)
-		{
-			Intent intent = new Intent(this, PreferenceActivity.class);
-			intent.putExtra("caller", this.getClass().getName());
-			startActivity(intent);
-		}
-
-		return super.onHandleActionBarItemClick(item, position);
-	}
 }

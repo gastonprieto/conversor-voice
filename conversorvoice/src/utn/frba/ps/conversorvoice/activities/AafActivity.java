@@ -59,7 +59,8 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		this.setActionBarContentView(R.layout.aaf);
+		this.setContentView(R.layout.aaf);
+//		this.setActionBarContentView(R.layout.aaf);
 
 		viewAafPicker = (AafPicker) this.findViewById(R.id.viewAafPicker);
 		viewAafPicker.setPropertyChangeListener(this);
@@ -106,7 +107,7 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 
 		// Update widgets
 		viewAafPicker.setAaf(getService().getAaf());
-		updateButtons(getService().isThreadRunning());
+		updateButtons(!getService().isThreadRunning());
 
 		if (getService().getAaf() == AAF.FAF)
 		{
