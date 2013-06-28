@@ -25,36 +25,21 @@
         android:icon="@drawable/launcher"
         android:label="@string/ApplicationName"
         android:theme="@style/Theme.GreenDroid.NoTitleBar" >
-        <service
-            android:name="utn.frba.ps.conversorvoice.services.DafxService"
-            android:label="@string/DafxService" >
-        </service>
+
         <service
             android:name="utn.frba.ps.conversorvoice.services.AafService"
             android:label="@string/AafService" >
         </service>
 
         <activity
-            android:name="utn.frba.ps.conversorvoice.activities.HomeActivity"
-            android:label="@string/HomeActivity"
+            android:name="utn.frba.ps.conversorvoice.activities.AafActivity"
+            android:label="@string/AafActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        
-        <activity
-            android:name="utn.frba.ps.conversorvoice.activities.DafxActivity"
-            android:label="@string/DafxActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        
-        <activity
-            android:name="utn.frba.ps.conversorvoice.activities.AafActivity"
-            android:label="@string/AafActivity"
-            android:screenOrientation="portrait" >
         </activity>
         
         <activity
