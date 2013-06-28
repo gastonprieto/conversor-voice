@@ -29,7 +29,7 @@
     <!-- Services -->
     <string name="DafxService">ConversorVoice DAFX Service</string>
     <string name="AafService">ConversorVoice AAF Service</string>
-    <string name="ServiceFailureMessage">Oops! Something went wrong. :-( Check if a wired or Bluetooth earphone/headset is plugged in. Maybe try it with a different sample rate again.</string>
+    <string name="ServiceFailureMessage">Check if a wired earphone/headset is plugged.</string>
     <string name="ServiceNotificationTitle">ConversorVoice runs in the background!</string>
     <string name="ServiceNotificationSubtitle">Touch here to see details.</string>
     <string name="start_message">Start</string>
