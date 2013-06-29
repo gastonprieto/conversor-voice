@@ -59,6 +59,7 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		new Utils(this).loadNativeLibrary();
 		this.setContentView(R.layout.aaf);
 //		this.setActionBarContentView(R.layout.aaf);
 
@@ -80,15 +81,25 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 	private class ListenerStart implements OnClickListener {
 		public void onClick(View v) {
 			getService().startThread();
-			updateButtons(true);
+			desactiveStart();
 		}
+
+	}
+
+	private void desactiveStart() {
+		updateButtons(false);
+	}
+
+	private void activeStart() {
+		updateButtons(true);
 	}
 	
 	private class ListenerStop implements OnClickListener {
 		public void onClick(View v) {
 			getService().stopThread(false);
-			updateButtons(false);
+			activeStart();
 		}
+
 
 	}
 
@@ -131,7 +142,7 @@ public final class AafActivity extends AudioServiceActivity<AafService>
 	{
 		new Utils(this).log("AafActivity losts the service.");
 
-		if (!this.isFinishing())
+		if (this != null && !this.isFinishing())
 		{
 			getService().setActivityVisible(false, this.getClass());
 		}
